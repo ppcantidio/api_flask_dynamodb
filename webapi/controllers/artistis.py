@@ -1,5 +1,5 @@
 from flask import Blueprint
-from utils.database import Database
+from webapi.utils.database import Database
 
 
 artists_routes = Blueprint('users_routes', __name__)
