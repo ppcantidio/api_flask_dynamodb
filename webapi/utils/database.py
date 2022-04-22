@@ -10,8 +10,17 @@ class Database:
             self.dynamodb = boto3.resource(
                 'dynamodb',
                 endpoint_url="http://localhost:8000")
+            self.dynamodb_client = boto3.client(
+                'dynamodb',
+                endpoint_url="http://localhost:8000")
         else:
             self.dynamodb = boto3.resource(
+                'dynamodb',
+                aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+                aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+                region_name="us-east-1"
+                )
+            self.dynamodb_client = boto3.client(
                 'dynamodb',
                 aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
                 aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
@@ -57,7 +66,7 @@ class Database:
 
 
     def create_table(self):
-        existing_tables = self.dynamodb.list_tables()['TableNames']
+        existing_tables = self.dynamodb_client.list_tables()['TableNames']
         if 'artists' not in existing_tables:
             table = self.dynamodb.create_table(
                 TableName='artists',

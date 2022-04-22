@@ -61,7 +61,6 @@ class ArtistsRoutes:
             'artist': document,
         }
 
-
         redis_client.delete(artist)
         redis_client.set(artist, str(response_document))
         redis_client.expire(artist, 604800)
