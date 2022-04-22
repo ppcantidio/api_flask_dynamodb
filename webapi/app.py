@@ -12,5 +12,5 @@ db = Database()
 db.create_table()
 
 from webapi.controllers.artistis import artists_routes
-app.register_blueprint(artists_routes, url_prefix='/api/v1/artistas')
+app.register_blueprint(artists_routes, url_prefix='/api/v1/artists')
 
