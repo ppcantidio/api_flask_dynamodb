@@ -30,7 +30,10 @@ Para instalar as bibliotecas utilize:
 pip install -r requirements.txt
 ```
 
-Após isso só executar o arquivo run.py
+Após isso só executar
+``` sh
+flask run
+```
 
 ### Como consumir
 - Utilize o método POST para rota:
