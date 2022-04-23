@@ -35,7 +35,7 @@ Após isso só executar o arquivo run.py
 ### Como consumir
 - Utilize o método POST para rota:
 ``` sh
-http://127.0.0.1:5000/api/v1/artists
+http://127.0.0.1:5000/api/v1/artists/
 ```
 
 - No body envie os seguinte parâmetros: 
