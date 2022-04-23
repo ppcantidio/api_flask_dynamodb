@@ -2,19 +2,18 @@ import os
 import uuid
 import json
 import redis
-from webapi.utils.database import Database
+from webapi.extensions.database import dynamo
 from flask import Blueprint, request, jsonify
 from webapi.utils.genius import songs_by_artist
 
 
-artists_routes = Blueprint('users_routes', __name__)
-
-db = Database()
+artists_routes = Blueprint('artists_routes', __name__)
 
 redis_client = redis.Redis(
     host=os.environ.get('REDIS_HOST'),
     port=os.environ.get('REDIS_PORT')
 )
+
 
 class ArtistsRoutes:
 
@@ -50,11 +49,15 @@ class ArtistsRoutes:
             'songs': songs_list
         }
 
-        existence = db.check_existence('artists', {'name': artist})
-        if existence:
-            db.update_item('artists', artist, songs_list)
-        else:
-            db.put_item('artists', document)
+        dynamo.tables['artists'].update_item(
+            Key={
+                'name': artist
+            },
+            UpdateExpression="set songs=:s",
+            ExpressionAttributeValues={
+                ":s": songs_list
+            }
+        )
         
         response_document = {
             'status': 'success',
@@ -67,5 +70,3 @@ class ArtistsRoutes:
 
         return jsonify(response_document)
             
-
-

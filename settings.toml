@@ -1,0 +1,20 @@
+[default]
+DEBUG = false
+EXTENSIONS = [
+    "webapi.extensions.database:init_app",
+    "webapi.extensions.blueprints:init_app",
+]
+
+
+[development]
+EXTENSIONS = [
+    "dynaconf_merge_unique"  # to reuse extensions list from [default]
+]
+DEBUG = true
+DYNAMO_ENABLE_LOCAL = true
+DYNAMO_LOCAL_HOST = 'localhost'
+DYNAMO_LOCAL_PORT = 8000
+
+
+[production]
+DEBUG = false
