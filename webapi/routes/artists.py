@@ -31,7 +31,7 @@ class ArtistsRoutes:
                 return jsonify(response_cache)
 
         songs = songs_by_artist(artist)
-        if songs == None:
+        if songs == None or songs == []:
             return jsonify({
                 'status': 'error'
             })
