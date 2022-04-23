@@ -7,3 +7,4 @@ def create_app(**config):
     configuration.init_app(app, **config)
     configuration.load_extensions(app)
     return app
+    
