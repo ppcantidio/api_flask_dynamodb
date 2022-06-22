@@ -1,5 +1,4 @@
 ### Introdução
-Teste realizado para vaga de desenvolvedor na Confitec.
 Essa API utiliza a API Genius para trazer as 10 músicas mais famosas de um artista.
 
 ### Fluxo da aplicação
